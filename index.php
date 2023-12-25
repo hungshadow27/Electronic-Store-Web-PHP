@@ -1,5 +1,8 @@
 <?php
 session_start();
-require_once "./src/App.php";
+
+require "./src/core/init.php";
+
+
 $app = new App();
-?>
+$app->loadController();
