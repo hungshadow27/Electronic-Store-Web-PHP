@@ -47,9 +47,16 @@
                     <button type="button" class="btn btn-outline-light">
                         Giỏ hàng
                     </button>
-                    <a href="<?= ROOT ?>/login" type="button" class="btn btn-outline-light">
-                        Đăng nhập
-                    </a>
+                    <?php if (!empty($username)) : ?>
+                        <a href="<?= ROOT ?>/profile" type="button" class="btn btn-outline-light">
+                            <?= $username ?>
+                        </a>
+                    <?php else : ?>
+                        <a href="<?= ROOT ?>/login" type="button" class="btn btn-outline-light">
+                            Đăng nhập
+                        </a>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>

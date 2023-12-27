@@ -25,21 +25,6 @@ class UserModel extends Database
     }
     public function login()
     {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-
-
-        $user = new UserEntity();
-        $user = $this->getUserByUsername($username);
-        if ($user == null) {
-            echo "Thong tin tai khoan hoac mat khau khong chinh xac!";
-            return;
-        }
-        if ($user->getUsername() == $username && $user->getPassword() == $password) {
-            echo "Dang nhap thanh cong!";
-        } else {
-            echo "Thong tin tai khoan hoac mat khau khong chinh xac!";
-        }
     }
     public function signup()
     {

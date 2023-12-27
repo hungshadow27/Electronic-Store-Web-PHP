@@ -24,6 +24,11 @@
         <form action="login/signin" method="post" class="text-center py-5" id="signin-form" style="display: block; transition: all 0.3s linear">
             <img style="width: 15%" src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.77d4065.png" alt="" />
             <h4 class="fw-bold">ĐĂNG NHẬP</h4>
+            <?php if (!empty($errors)) : ?>
+                <div class="alert alert-danger w-50 mx-auto" role="alert">
+                    <?= $errors ?>
+                </div>
+            <?php endif; ?>
             <div class="w-50 mx-auto">
                 <div class="input-group input-group-lg mb-3">
                     <span class="input-group-text bg-danger text-white" id="inputGroup-sizing-lg">Username</span>
