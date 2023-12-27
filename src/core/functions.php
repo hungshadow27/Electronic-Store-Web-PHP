@@ -13,3 +13,8 @@ function showError($errno, $errstr, $errfile, $errline)
     echo "<h2>File: .$errfile</h2>";
     echo "<h2>Dòng: .$errline</h2>";
 }
+function redirect($path)
+{
+    header("Location: " . ROOT . "/" . $path);
+    die;
+}

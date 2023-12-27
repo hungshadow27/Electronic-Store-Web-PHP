@@ -47,7 +47,7 @@
                     <button type="button" class="btn btn-outline-light">
                         Giỏ hàng
                     </button>
-                    <a href="login.html" type="button" class="btn btn-outline-light">
+                    <a href="<?= ROOT ?>/login" type="button" class="btn btn-outline-light">
                         Đăng nhập
                     </a>
                 </div>

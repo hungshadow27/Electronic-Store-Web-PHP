@@ -23,6 +23,10 @@ class Database
         //
         $this->connect();
     }
+    public function __destruct()
+    {
+        $this->conn->close();
+    }
     protected function connect()
     {
         $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->name);
@@ -67,6 +71,20 @@ class Database
         }
         return $returnData;
     }
+    public function getOne($fields, $value)
+    {
+        $sql = "SELECT * FROM $this->table WHERE $fields = '$value'";
+        $result = $this->conn->query($sql);
+        $this->resetQuery();
+
+        if ($result) {
+            $returnData = $result->fetch_object();
+            return $returnData;
+        } else {
+            // Handle the case where the query fails
+            die("Error in SQL query: " . $this->conn->error);
+        }
+    }
     public function insert($data = [])
     {
         $fields = implode(',', array_keys($data));
@@ -80,7 +98,7 @@ class Database
 
         return $this->statement->affected_rows;
     }
-    public function updateRow($id, $data = [])
+    public function updateId($id, $data = [])
     {
         $keyValues = [];
         foreach ($data as $key => $values) {
