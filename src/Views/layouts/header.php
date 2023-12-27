@@ -32,7 +32,7 @@
         <div class="bottom bg-danger py-3">
             <div class="container d-flex align-items-center">
                 <div class="logo w-25">
-                    <span class="text-white fs-4 fw-medium">HungMobie</span>
+                    <a href="<?= ROOT ?>/home" class="text-white fs-4 fw-medium text-decoration-none">HungMobie</a>
                     <img style="width: 40px" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Mobile-Smartphone-icon.png" alt="" />
                 </div>
                 <div class="search w-50">
@@ -47,9 +47,15 @@
                     <button type="button" class="btn btn-outline-light">
                         Giỏ hàng
                     </button>
-                    <a href="login.html" type="button" class="btn btn-outline-light">
-                        Đăng nhập
-                    </a>
+                    <?php if (!empty($user)) : ?>
+                        <a href="<?= ROOT ?>/account" type="button" class="btn btn-outline-light">
+                            <?= $user->getUsername() ?>
+                        </a>
+                    <?php else : ?>
+                        <a href="<?= ROOT ?>/login" type="button" class="btn btn-outline-light">
+                            Đăng nhập
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

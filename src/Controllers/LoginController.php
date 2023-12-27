@@ -3,6 +3,13 @@ require "./src/Models/UserModel.php";
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        if (isset($_SESSION['USER'])) {
+            redirect('home');
+            die;
+        }
+    }
     public function index($a = '', $b = '', $c = '')
     {
         $this->view('login.view');

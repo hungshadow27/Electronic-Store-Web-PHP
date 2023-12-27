@@ -8,7 +8,7 @@ class Controller
         }
         $filename = "./src/Views/" . $name . ".php";
         if (file_exists($filename)) {
-            require $filename;
+            require_once $filename;
         } else {
             $filename = "./src/Views/404.view.php";
             require $filename;

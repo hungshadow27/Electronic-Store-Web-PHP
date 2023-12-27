@@ -4,11 +4,11 @@ class HomeController extends Controller
 {
     public function index($a = '', $b = '', $c = '')
     {
-
+        $data = null;
         if (isset($_SESSION['USER'])) {
             $user = new UserEntity();
             $user = unserialize($_SESSION['USER']);
-            $data['username'] = $user->getUsername();
+            $data['user'] = $user;
         }
         $this->view('home.view', $data);
     }
