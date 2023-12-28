@@ -29,8 +29,8 @@ class App
 
         /*Select Method*/
         if (!empty($URL[1])) {
-            if (method_exists($controller, $URL[1])) {
-                $this->method = $URL[1];
+            if (method_exists($controller, str_replace('-', '', $URL[1]))) {
+                $this->method = str_replace('-', '', $URL[1]);
                 unset($URL[1]);
             }
         }

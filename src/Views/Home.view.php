@@ -3,35 +3,7 @@
     <div class="container d-flex align-items-start">
         <div class="category-list w-25">
             <div class="d-flex flex-column bg-white w-100 shadow rounded-3">
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a href="list-products.html" class="nav-link link-dark" aria-current="page">Điện thoại<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Laptop<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Âm thanh<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Đồng hồ<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Camera<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Phụ kiện<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">PC<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Màn hình<span style="float: right">></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-dark">Tivi<span style="float: right">></span></a>
-                    </li>
-                </ul>
+                <?php require_once "./src/Views/modules/home/CategoryMenu.php" ?>
             </div>
         </div>
         <div class="slider w-75 mx-4 shadow">
