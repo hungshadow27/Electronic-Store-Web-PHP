@@ -1,7 +1,8 @@
 <?php
 require "./src/Models/UserEntity.php";
-class LogoutController extends Controller
+class LogoutController
 {
+    use Controller;
     public function index($a = '', $b = '', $c = '')
     {
         if (isset($_SESSION['USER'])) {

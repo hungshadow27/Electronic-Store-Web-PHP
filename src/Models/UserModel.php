@@ -1,8 +1,9 @@
 <?php
 require "./src/Models/UserEntity.php";
 
-class UserModel extends Database
+class UserModel
 {
+    use Database;
     public function getUserById($id)
     {
         $rs = $this->table('user')
@@ -10,7 +11,7 @@ class UserModel extends Database
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->name);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->create_date, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
         return $user;
     }
     public function getUserByUsername($username)
@@ -20,7 +21,7 @@ class UserModel extends Database
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->name);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->create_date, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
         return $user;
     }
     public function login()

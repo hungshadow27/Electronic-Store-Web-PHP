@@ -23,13 +23,13 @@
                             <div class="form-group row mb-3">
                                 <label for="inputName" class="col-3 col-form-label">Số điện thoại</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="inputName" value="0909*****" />
+                                    <input type="text" class="form-control" id="inputName" value="<?= $user->getPhone_number() ?>" />
                                 </div>
                             </div>
                             <div class="form-group row mb-3">
                                 <label for="startDate" class="col-3">Ngày sinh</label>
                                 <div class="col-9">
-                                    <input id="startDate" class="form-control" type="date" value="2017-06-01" />
+                                    <input id="startDate" class="form-control" type="date" value="<?= $user->getDate_of_birth(); ?>" />
                                 </div>
                             </div>
 
@@ -37,16 +37,15 @@
                                 <label for="startDate" class="col-3">Giới tính</label>
                                 <div class="col-9">
                                     <select class="form-control">
-                                        <option>Nam</option>
-                                        <option>Nữ</option>
-                                        <option>Khác</option>
+                                        <option <?= ($user->getGender()) == 0 ? "selected" : ""; ?>>Nam</option>
+                                        <option <?= ($user->getGender()) == 1 ? "selected" : ""; ?>>Nữ</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row mb-3">
                                 <label for="inputName" class="col-3 col-form-label">Địa chỉ</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="inputName" value="Khu 2 - Hoàng Cương - Thanh Ba - Phú Thọ" />
+                                    <input type="text" class="form-control" id="inputName" value="<?= $user->getAddress(); ?>" />
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-danger d-block mx-auto">

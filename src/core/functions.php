@@ -18,3 +18,7 @@ function redirect($path)
     header("Location: " . ROOT . "/" . $path);
     die;
 }
+function get_date($date)
+{
+    return date("jS M, Y", strtotime($date));
+}

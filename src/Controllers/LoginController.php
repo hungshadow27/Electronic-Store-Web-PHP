@@ -1,8 +1,9 @@
 <?php
 require "./src/Models/UserModel.php";
 
-class LoginController extends Controller
+class LoginController
 {
+    use Controller;
     public function __construct()
     {
         if (isset($_SESSION['USER'])) {

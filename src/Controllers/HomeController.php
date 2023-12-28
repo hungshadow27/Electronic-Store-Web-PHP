@@ -1,7 +1,8 @@
 <?php
 require "./src/Models/UserEntity.php";
-class HomeController extends Controller
+class HomeController
 {
+    use Controller;
     public function index($a = '', $b = '', $c = '')
     {
         $data = null;

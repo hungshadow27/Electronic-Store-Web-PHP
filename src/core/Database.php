@@ -1,6 +1,6 @@
 <?php
 
-class Database
+trait Database
 {
     protected $conn = null;
     protected $table = '';
