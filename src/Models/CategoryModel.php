@@ -12,4 +12,10 @@ class CategoryModel
         }
         return $category;
     }
+    public function getCategoryById($id)
+    {
+        $category = $this->table('category')
+            ->getOne('category_id', $id);
+        return $category;
+    }
 }

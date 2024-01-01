@@ -1,3 +1,10 @@
+<?php
+require_once "./src/Models/UserEntity.php";
+if (isset($_SESSION['USER'])) {
+    $user = new UserEntity();
+    $user = unserialize($_SESSION['USER']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
