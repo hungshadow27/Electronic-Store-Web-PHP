@@ -56,6 +56,29 @@ trait Database
         $this->limit = 15;
         $this->offset = 0;
     }
+
+    public function getListItemsWithCondition($fields, $value)
+    {
+        $sql = "SELECT * FROM $this->table WHERE $fields = '$value'";
+
+        $sql .= " LIMIT $this->limit OFFSET $this->offset";
+
+        $result = $this->conn->query($sql);
+        $this->resetQuery();
+
+        if ($result) {
+            $returnData = array();
+            while ($row = $result->fetch_object()) {
+                $returnData[] = $row;
+            }
+            return $returnData;
+        } else {
+            // Handle the case where the query fails
+            die("Error in SQL query: " . $this->conn->error);
+        }
+    }
+
+
     public function get()
     {
         $sql = "SELECT * FROM $this->table LIMIT ? OFFSET ?";

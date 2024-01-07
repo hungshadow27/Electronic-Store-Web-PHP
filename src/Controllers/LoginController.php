@@ -1,6 +1,6 @@
 <?php
 require "./src/Models/UserModel.php";
-
+require "./src/Models/CartModel.php";
 class LoginController
 {
     use Controller;
@@ -30,15 +30,36 @@ class LoginController
                     redirect('home');
                 }
             }
-            $data['errors'] = "Thong tin tai khoan hoac mat khau khong chinh xac!";
+            $data['errors'] = "Thông tin tài khoản hoặc mật khẩu không chính xác!";
         }
         $this->view('login.view', $data);
     }
     public function signup()
     {
+        $data[] = '';
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+            $repassword = $_POST["repassword"];
+
+
             $usermodel = new UserModel;
-            $usermodel->signup();
+            $user = $usermodel->getUserByUsername($username);
+            if ($user != null) {
+                $data['errors'] = "Tài khoản đã tồn tại!";
+            } else if (strcmp($password, $repassword)) {
+                $data['errors'] = "Mật khẩu nhập lại không khớp";
+            } else {
+                $currentDateTime = getCurrentDateTime();
+                $usermodel->table("user")
+                    ->insert([
+                        "username" => $username,
+                        "password" => $password,
+                        "created_at" => $currentDateTime
+                    ]);
+                $data['errors'] = "Đăng ký thành công vui lòng đăng nhập!";
+            }
         }
+        $this->view('login.view', $data);
     }
 }

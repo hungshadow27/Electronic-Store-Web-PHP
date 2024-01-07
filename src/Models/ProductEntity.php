@@ -2,14 +2,14 @@
 class ProductEntity
 {
 
-    private $id = '';
-    private $name = '';
-    private $description = '';
-    private $price = '';
-    private $image = '';
-    private $sale_price = '';
-    private $stock_quantity = '';
-    private $category_id = '';
+    protected $id = '';
+    protected $name = '';
+    protected $description = '';
+    protected $price = '';
+    protected $image = '';
+    protected $sale_price = '';
+    protected $stock_quantity = '';
+    protected $category_id = '';
 
     public function __construct($id = '', $name = '', $description = '', $price = '', $image = '', $sale_price = '', $stock_quantity = '', $category_id = '')
     {
@@ -86,5 +86,25 @@ class ProductEntity
     public function getCategory_id()
     {
         return $this->category_id;
+    }
+}
+class CartProductEntity extends ProductEntity
+{
+    protected $quantity = '';
+    public function __construct($id = '', $name = '', $description = '', $price = '', $image = '', $sale_price = '', $stock_quantity = '', $category_id = '', $quantity = '')
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = $price;
+        $this->image = $image;
+        $this->sale_price = $sale_price;
+        $this->stock_quantity = $stock_quantity;
+        $this->category_id = $category_id;
+        $this->quantity = $quantity;
+    }
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }

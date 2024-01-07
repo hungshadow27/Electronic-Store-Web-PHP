@@ -11,7 +11,7 @@ class UserModel
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->create_date, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
         return $user;
     }
     public function getUserByUsername($username)
@@ -21,7 +21,7 @@ class UserModel
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->create_date, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
         return $user;
     }
     public function login()
@@ -29,22 +29,5 @@ class UserModel
     }
     public function signup()
     {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        $repassword = $_POST["repassword"];
-
-
-        $user = new UserEntity();
-        $user = $this->getUserByUsername($username);
-        if ($user != null) {
-            echo "Username da ton tai!";
-        } else {
-            $this->table("user")
-                ->insert([
-                    "username" => $username,
-                    "password" => $password
-                ]);
-            echo "Dang ky thanh cong!";
-        }
     }
 }

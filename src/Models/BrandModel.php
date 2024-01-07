@@ -12,4 +12,10 @@ class BrandModel
         }
         return $brands;
     }
+    public function getBrandBySlug($slug)
+    {
+        $brand = $this->table('brand')
+            ->getOne('slug', $slug);
+        return $brand;
+    }
 }

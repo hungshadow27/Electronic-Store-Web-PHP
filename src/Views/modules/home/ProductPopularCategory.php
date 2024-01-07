@@ -24,11 +24,13 @@ $listBrand = $brandModel->getAllBrand();
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="list-product mt-3 d-flex justify-content-center align-items-strength flex-wrap">
-                <?php $categoryProducts = array_slice($listProduct, 0, 8);
-                foreach ($categoryProducts as $product) : ?>
-                    <?php if ($product->category_id == $cat->category_id) : ?>
-
+            <div class="list-product mt-3 d-flex justify-content-between align-items-strength flex-wrap">
+                <?php $item = 0;
+                foreach ($listProduct as $product) : ?>
+                    <?php if ($product->category_id == $cat->category_id) :
+                        $item++; ?>
+                        <?php if ($item > 8) : break; ?>
+                        <?php endif; ?>
                         <?php require "./src/Views/component/Product.php"; ?>
                     <?php endif; ?>
 

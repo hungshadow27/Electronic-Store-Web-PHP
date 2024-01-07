@@ -22,3 +22,15 @@ function get_date($date)
 {
     return date("jS M, Y", strtotime($date));
 }
+function getCurrentDateTime()
+{
+    // Get current UTC time
+    $utcDateTime = new DateTime('now', new DateTimeZone('UTC'));
+
+    // Set the time zone to UTC+7
+    $utcDateTime->setTimezone(new DateTimeZone('Asia/Bangkok'));
+
+    // Format the date and time
+    $currentDateTime = $utcDateTime->format('Y-m-d H:i:s');
+    return $currentDateTime;
+}

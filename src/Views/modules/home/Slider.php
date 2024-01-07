@@ -3,10 +3,10 @@ require "./src/Models/SliderModel.php";
 $sliderModel = new SliderModel();
 $sliders = $sliderModel->getAllSlider();
 ?>
-<div id="carouselExample" class="carousel slide w-75 mx-4 shadow">
+<div id="carouselExample" class="carousel slide w-75 mx-4 shadow" data-bs-ride="carousel">
     <div class="carousel-inner">
         <?php foreach ($sliders as $slider) : ?>
-            <div class="carousel-item <?= $slider->id === 1 ? "active" : "" ?>">
+            <div class="carousel-item <?= $slider->id === 1 ? "active" : "" ?>" data-bs-interval="4000">
                 <a href="<?= $slider->link ?>"> <img src="<?= $slider->image ?>" class="d-block w-100" alt="...">
                 </a>
             </div>

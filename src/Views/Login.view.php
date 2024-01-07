@@ -21,7 +21,7 @@
 
 <body>
     <div class="container">
-        <form action="login/signin" method="post" class="text-center py-5" id="signin-form" style="display: block; transition: all 0.3s linear">
+        <form action="<?= ROOT ?>/login/signin" method="post" class="text-center py-5" id="signin-form" style="display: block; transition: all 0.3s linear">
             <img style="width: 15%" src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.77d4065.png" alt="" />
             <h4 class="fw-bold">ĐĂNG NHẬP</h4>
             <?php if (!empty($errors)) : ?>
@@ -45,7 +45,7 @@
             <span>Bạn chưa có tài khoản?
                 <span role="button" class="text-primary" id="signup-now">Đăng ký ngay!</span></span>
         </form>
-        <form action="login/signup" method="post" class="text-center py-5" style="display: none; transition: all 0.3s linear; opacity: 0" id="signup-form">
+        <form action="<?= ROOT ?>/login/signup" method="post" class="text-center py-5" style="display: none; transition: all 0.3s linear; opacity: 0" id="signup-form">
             <img style="width: 15%" src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.77d4065.png" alt="" />
             <h4 class="fw-bold">ĐĂNG KÝ</h4>
             <div class="w-50 mx-auto">

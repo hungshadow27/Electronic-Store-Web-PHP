@@ -23,6 +23,30 @@ if (isset($_SESSION['USER'])) {
             box-sizing: border-box;
             font-family: "Inter", sans-serif;
         }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+
+        /* body::-webkit-scrollbar {
+            display: none;
+        } */
     </style>
 </head>
 
@@ -51,9 +75,9 @@ if (isset($_SESSION['USER'])) {
                     </div>
                 </div>
                 <div class="cart w-25 text-end">
-                    <button type="button" class="btn btn-outline-light">
+                    <a href="<?= ROOT ?>/cart" type="button" class="btn btn-outline-light">
                         Giỏ hàng
-                    </button>
+                    </a>
                     <?php if (!empty($user)) : ?>
                         <a href="<?= ROOT ?>/account" type="button" class="btn btn-outline-light">
                             <?= $user->getUsername() ?>

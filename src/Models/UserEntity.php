@@ -5,7 +5,7 @@ class UserEntity
     private $id = '';
     private $username = '';
     private $password = '';
-    private $create_date = '';
+    private $created_at = '';
     private $image = '';
     private $name = '';
     private $date_of_birth = '';
@@ -14,12 +14,12 @@ class UserEntity
     private $phone_number = '';
 
 
-    public function __construct($id = '', $username = '', $password = '', $create_date = '', $image = '', $name = '', $date_of_birth = '', $gender = '', $address = '', $phone_number = '')
+    public function __construct($id = '', $username = '', $password = '', $created_at = '', $image = '', $name = '', $date_of_birth = '', $gender = '', $address = '', $phone_number = '')
     {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
-        $this->create_date = $create_date;
+        $this->created_at = $created_at;
         $this->image = $image;
         $this->name = $name;
         $this->date_of_birth = $date_of_birth;
@@ -49,7 +49,7 @@ class UserEntity
      */
     public function getCreate_date()
     {
-        return $this->create_date;
+        return $this->created_at;
     }
 
     /**

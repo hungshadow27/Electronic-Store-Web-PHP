@@ -1,11 +1,4 @@
 <?php require_once "./src/Views/layouts/header.php";
-require_once "./src/Models/ProductModel.php";
-require_once "./src/Models/CategoryModel.php";
-$categoryModel = new CategoryModel();
-$category = $categoryModel->getCategoryById($product->category_id);
-
-$productModel = new ProductModel();
-$listProduct = $productModel->getAllProduct();
 ?>
 <nav class="container my-2" aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -60,22 +53,14 @@ $listProduct = $productModel->getAllProduct();
 
             <div class="d-flex flex-column align-items-start">
                 <?php
-                $item = 0;
-                foreach ($listProduct as $pro) : ?>
-                    <?php if ($product->category_id == $pro->category_id && $product->product_id != $pro->product_id) :
-                        $item++;
-                    ?>
-                        <?php if ($item > 4) : break; ?>
-                        <?php endif; ?>
-                        <a href="<?= ROOT ?>/productdetail/<?= $pro->product_id ?>" class="d-flex justify-content-evenly align-items-start mt-3 text-decoration-none text-black">
-                            <img class="w-25" src="<?= $pro->image ?>" alt="" />
-                            <div class="text-start px-2">
-                                <div><?= $pro->name ?></div>
-                                <span class="fs-6 text-danger fw-bold"><?= number_format($pro->sale_price) ?>₫</span>
-                            </div>
-                        </a>
-                    <?php endif; ?>
-
+                foreach ($similarProducts as $pro) : ?>
+                    <a href="<?= ROOT ?>/productdetail/<?= $pro->product_id ?>" class="d-flex justify-content-evenly align-items-start mt-3 text-decoration-none text-black">
+                        <img class="w-25" src="<?= $pro->image ?>" alt="" />
+                        <div class="text-start px-2">
+                            <div><?= $pro->name ?></div>
+                            <span class="fs-6 text-danger fw-bold"><?= number_format($pro->sale_price) ?>₫</span>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
 
             </div>
@@ -86,12 +71,10 @@ $listProduct = $productModel->getAllProduct();
             47 Bình luận về iPhone Xs 256GB Đổi Bảo Hành
         </div>
         <div class="row border p-3">
-            <div class="text-center col-3">
-                4.5/5 sao <br />5 sao <br />Đã có 47 bình luận và đánh giá
-            </div>
+            <?php require "./src/Views/component/Rating.php" ?>
             <div class="col-9">
                 <span class="fs-4">Bạn đánh giá sản phẩm này bao nhiêu sao?</span>
-                <br />5 sao
+                <?php require "./src/Views/component/Rating.php" ?>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control my-3" placeholder="Mời bạn để lại bình luận..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
                 </div>

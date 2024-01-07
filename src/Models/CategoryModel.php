@@ -18,4 +18,10 @@ class CategoryModel
             ->getOne('category_id', $id);
         return $category;
     }
+    public function getCategoryBySlug($slug)
+    {
+        $category = $this->table('category')
+            ->getOne('slug', $slug);
+        return $category;
+    }
 }
