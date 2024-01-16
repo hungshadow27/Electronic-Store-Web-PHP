@@ -92,6 +92,60 @@
         </div>
     </div>
 </footer>
+<!-- Toast noti -->
+<div class="toast-container position-fixed p-3" style="top: 10%; right:0;">
+    <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="p-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg></div>
+
+            <div class="toast-body fs-5">
+                Thông báo
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <hr class="m-0">
+        <div class="fs-6 p-2" id="toast-data">Data</div>
+    </div>
+</div>
+<script>
+    const cartItemsNumber = document.getElementById('cartItemsNumber');
+    const showToast = (idToast, idData, data) => {
+        const toast = document.getElementById(idToast)
+        document.getElementById(idData).innerText = data;
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast)
+        toastBootstrap.show()
+    }
+    const updateCartItemsNumber = (num) => {
+        cartItemsNumber.innerText = num;
+    }
+    const addCart = (e, id) => {
+        e.preventDefault();
+        var id = id;
+        //var quantity = $(".product .quantity")[index].value;
+        console.log(id);
+        $.ajax({
+            url: '<?= ROOT ?>/cart/add',
+            type: 'POST',
+            data: {
+                id: id,
+                //quantity: quantity
+            },
+            success: function(response) {
+                // Handle the success response, if needed
+                console.log('Success:', response);
+                updateCartItemsNumber(response);
+                showToast('liveToast', 'toast-data', "Bạn đã thêm sản phẩm vào giỏ hàng thành công!")
+            },
+            error: function(error) {
+                // Handle the error, if any
+                console.error('Error:', error);
+                showToast('liveToast', 'toast-data', "Có lỗi xảy ra!")
+            }
+        });
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 

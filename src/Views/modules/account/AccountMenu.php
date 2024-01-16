@@ -1,8 +1,12 @@
-<div class="col-2">
+<div class="col-lg-2 col-sm-12">
     <div class="row justify-content-evenly align-items-center">
-        <img class="col-4 rounded-circle" src="https://down-vn.img.susercontent.com/file/a86c4f073489c042e3db7cb9c86668a8_tn" alt="" />
+        <?php if ($user->getImage() == '') : ?>
+            <img class="rounded-circle col-4 rounded-circle" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" alt="" />
+        <?php else : ?>
+            <img class="rounded-circle object-fit-cover col-4 p-0" style="width:60px; height:60px;" src="<?= ROOT ?>/Public/images/<?= $user->getImage() ?>" alt="" />
+        <?php endif; ?>
         <div class="col-8">
-            <div class="fs-5 fw-bold"><?= $user->getName() ?></div>
+            <div class="fs-5 fw-medium"><?= $user->getName() ?></div>
             <a href="<?= ROOT ?>/account" class="text-primary text-decoration-none">Sửa hồ sơ</a>
         </div>
     </div>

@@ -2,7 +2,6 @@
 require_once "./src/Models/BrandModel.php";
 $brandModel = new BrandModel();
 $listBrand = $brandModel->getAllBrand();
-
 ?>
 <nav class="container my-2" aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -12,10 +11,10 @@ $listBrand = $brandModel->getAllBrand();
     </ol>
 </nav>
 <div class="list-brand container">
-    <div class="d-flex flex-wrap justify-content-start">
+    <div class="row flex-wrap justify-content-start align-items-center">
         <?php foreach ($listBrand as $br) : ?>
             <?php if ($br->category == $category->category_id) : ?>
-                <div class="p-1 border rounded-1 text-center m-1" style="width: 13%">
+                <div class="p-1 border rounded-1 text-center m-1 col-lg-2 col-sm-6">
                     <a href="<?= ROOT ?>/category/<?= $category->slug ?>/<?= strtolower($br->brand_name)  ?>"><img src="<?= $br->image ?>" class="img-fluid" alt="" /></a>
                 </div>
             <?php endif; ?>
@@ -24,8 +23,8 @@ $listBrand = $brandModel->getAllBrand();
     </div>
 </div>
 <div class="main-content my-3">
-    <div class="container d-flex justify-content-center align-items-start">
-        <div class="filter border rounded shadow p-2" style="width: 20%">
+    <div class="container row justify-content-center align-items-start mx-auto">
+        <div class="filter border rounded shadow p-2 col-lg-3 col-sm-12 mb-2">
             <h4 class="fw-medium">BỘ LỌC</h4>
             <hr />
             <div class="filter-group">
@@ -35,7 +34,7 @@ $listBrand = $brandModel->getAllBrand();
                         <?php foreach ($listBrand as $br) : ?>
                             <?php if ($br->category == $category->category_id) : ?>
                                 <li>
-                                    <a class="text-decoration-none" href="<?= ROOT ?>/category/<?= $category->slug ?>/<?= strtolower($br->brand_name)  ?>"><?= $br->brand_name ?></a>
+                                    <a class="text-decoration-none" href="<?= ROOT ?>/category/<?= $category->slug ?>/<?= strtolower($br->slug)  ?>"><?= $br->brand_name ?></a>
                                 </li>
                             <?php endif; ?>
                         <?php endforeach; ?>
@@ -66,7 +65,7 @@ $listBrand = $brandModel->getAllBrand();
                 </div>
             </div>
         </div>
-        <div class="table-product border rounded shadow p-2 ms-2" style="width: 79%">
+        <div class="table-product border rounded shadow p-2 col-lg-9 col-sm-12">
             <div class="top-title d-flex justify-content-between align-items-center">
                 <h4><?= $category->name ?></h4>
                 <div class="dropdown">
@@ -83,7 +82,7 @@ $listBrand = $brandModel->getAllBrand();
                 </div>
             </div>
             <hr />
-            <div class="list-product d-flex flex-wrap justify-content-between align-items-stretch">
+            <div class="list-product row justify-content-between align-items-stretch">
                 <?php foreach ($listProduct as $product) : ?>
                     <?php require "./src/Views/component/ProductCategory.php" ?>
                 <?php endforeach; ?>

@@ -121,7 +121,7 @@ trait Database
 
         return $this->statement->affected_rows;
     }
-    public function updateId($id, $data = [])
+    public function update($fields, $value, $data = [])
     {
         $keyValues = [];
         foreach ($data as $key => $values) {
@@ -130,7 +130,7 @@ trait Database
         $setFields = implode(',', $keyValues);
 
         $values = array_values($data);
-        $sql = "UPDATE $this->table SET $setFields WHERE id = $id";
+        $sql = "UPDATE $this->table SET $setFields WHERE $fields = $value";
         $this->statement = $this->conn->prepare($sql);
         $this->statement->bind_param(str_repeat('s', count($data)), ...$values);
         $this->statement->execute();
@@ -138,11 +138,11 @@ trait Database
 
         return $this->statement->affected_rows;
     }
-    public function deleteId($id)
+    public function deleteOne($fields, $value)
     {
-        $sql = "DELETE FROM $this->table WHERE id = ?";
+        $sql = "DELETE FROM $this->table WHERE $fields = ?";
         $this->statement = $this->conn->prepare($sql);
-        $this->statement->bind_param('i', $id);
+        $this->statement->bind_param('i', $value);
         $this->statement->execute();
         $this->resetQuery();
 

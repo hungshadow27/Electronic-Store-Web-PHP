@@ -3,7 +3,7 @@ require "./src/Models/SliderModel.php";
 $sliderModel = new SliderModel();
 $sliders = $sliderModel->getAllSlider();
 ?>
-<div id="carouselExample" class="carousel slide w-75 mx-4 shadow" data-bs-ride="carousel">
+<div id="carouselExample" class="carousel slide col-lg-6 col-sm-12 shadow" data-bs-ride="carousel">
     <div class="carousel-inner">
         <?php foreach ($sliders as $slider) : ?>
             <div class="carousel-item <?= $slider->id === 1 ? "active" : "" ?>" data-bs-interval="4000">

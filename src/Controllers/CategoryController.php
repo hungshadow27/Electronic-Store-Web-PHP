@@ -11,6 +11,10 @@ class CategoryController
         if (empty($brandSlug)) {
             $categoryModel = new CategoryModel();
             $category = $categoryModel->getCategoryBySlug($categorySlug);
+            if (empty($category)) {
+                redirect("_404");
+                exit;
+            }
             $productModel = new ProductModel();
 
             $current = 1;
@@ -30,6 +34,10 @@ class CategoryController
         } else {
             $brandModel = new BrandModel();
             $brand = $brandModel->getBrandBySlug($brandSlug);
+            if (empty($brand)) {
+                redirect("_404");
+                exit;
+            }
             $categoryModel = new CategoryModel();
             $category = $categoryModel->getCategoryBySlug($categorySlug);
             $productModel = new ProductModel();

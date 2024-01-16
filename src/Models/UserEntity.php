@@ -91,4 +91,84 @@ class UserEntity
     {
         return $this->phone_number;
     }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of date_of_birth
+     *
+     * @return  self
+     */
+    public function setDate_of_birth($date_of_birth)
+    {
+        $this->date_of_birth = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of gender
+     *
+     * @return  self
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of address
+     *
+     * @return  self
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of phone_number
+     *
+     * @return  self
+     */
+    public function setPhone_number($phone_number)
+    {
+        $this->phone_number = $phone_number;
+
+        return $this;
+    }
+    public function setUserInfo($name, $phoneNumber, $dateOfBirth, $gender, $address)
+    {
+        $this->name = $name;
+        $this->phone_number = $phoneNumber;
+        $this->date_of_birth = $dateOfBirth;
+        $this->gender = $gender;
+        $this->address = $address;
+    }
 }

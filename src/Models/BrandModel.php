@@ -5,6 +5,7 @@ class BrandModel
     public function getAllBrand()
     {
         $rs = $this->table('brand')
+            ->limit(999)
             ->get();
         $brands = array();
         foreach ($rs as $r) {

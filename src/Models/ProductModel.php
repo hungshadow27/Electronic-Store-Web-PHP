@@ -1,5 +1,5 @@
 <?php
-require "./src/Models/ProductEntity.php";
+require_once "./src/Models/ProductEntity.php";
 
 class ProductModel
 {

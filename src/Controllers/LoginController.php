@@ -1,6 +1,7 @@
 <?php
 require "./src/Models/UserModel.php";
 require "./src/Models/CartModel.php";
+require "./src/Models/CartItemsModel.php";
 class LoginController
 {
     use Controller;
@@ -8,7 +9,7 @@ class LoginController
     {
         if (isset($_SESSION['USER'])) {
             redirect('home');
-            die;
+            exit;
         }
     }
     public function index($a = '', $b = '', $c = '')
@@ -26,8 +27,15 @@ class LoginController
             $user = $usermodel->getUserByUsername($username);
             if ($user != null) {
                 if ($user->getUsername() == $username && $user->getPassword() == $password) {
-                    $_SESSION['USER'] = serialize($user);;
+                    $_SESSION['USER'] = serialize($user);
+                    $cartmodel = new CartModel;
+                    $cart = $cartmodel->getCartByUserId($user->getId());
+                    $cartItemsModel = new CartItemsModel;
+                    $cartItems = $cartItemsModel->getCartItems($cart->cart_id);
+                    $_SESSION['CART'] = $cart;
+                    $_SESSION['CARTITEMS'] = $cartItems;
                     redirect('home');
+                    exit;
                 }
             }
             $data['errors'] = "Thông tin tài khoản hoặc mật khẩu không chính xác!";
@@ -51,12 +59,13 @@ class LoginController
                 $data['errors'] = "Mật khẩu nhập lại không khớp";
             } else {
                 $currentDateTime = getCurrentDateTime();
-                $usermodel->table("user")
-                    ->insert([
-                        "username" => $username,
-                        "password" => $password,
-                        "created_at" => $currentDateTime
-                    ]);
+                //create new user
+                $usermodel->createNewUser($username, $password, $currentDateTime);
+                //create new cart
+                $user = $usermodel->getUserByUsername($username);
+                $cartmodel = new CartModel;
+                $cartmodel->createNewCart($user->getId());
+
                 $data['errors'] = "Đăng ký thành công vui lòng đăng nhập!";
             }
         }

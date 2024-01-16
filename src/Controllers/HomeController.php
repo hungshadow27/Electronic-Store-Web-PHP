@@ -7,9 +7,4 @@ class HomeController
     {
         $this->view('home.view');
     }
-    public function edit($a = 1, $b = 2)
-    {
-        $c = $a + $b;
-        echo "Ket qua =  $c";
-    }
 }

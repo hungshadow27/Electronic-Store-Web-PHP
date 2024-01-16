@@ -7,7 +7,9 @@ class LogoutController
     {
         if (isset($_SESSION['USER'])) {
             unset($_SESSION['USER']);
+            unset($_SESSION['CARTITEMS']);
             redirect('home');
+            exit;
         }
     }
 }
