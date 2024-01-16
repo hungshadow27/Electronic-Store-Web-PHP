@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2024 at 08:05 AM
+-- Generation Time: Jan 16, 2024 at 02:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `banner` (
 
 INSERT INTO `banner` (`id`, `link`, `image`) VALUES
 (1, 'https://cellphones.com.vn/samsung-galaxy-z-fold-5.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/right-banner-fold5-th122.png'),
-(2, 'https://cellphones.com.vn/ipad-10-2-inch-2021.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/gen%209.jpg'),
+(2, 'https://cellphones.com.vn/ipad-10-2-inch-2021.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/ipad-gen9-right-th1.jpg'),
 (3, 'https://cellphones.com.vn/uu-dai-sinh-vien-hoc-sinh', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/right%20sv.png');
 
 -- --------------------------------------------------------
@@ -73,7 +73,12 @@ INSERT INTO `brand` (`brand_id`, `brand_name`, `category`, `image`, `slug`) VALU
 (11, 'Lenovo', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Lenovo.png', 'lenovo'),
 (12, 'HP', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/HP.png', 'hp'),
 (13, 'Acer', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/acer.png', 'acer'),
-(14, 'Dell', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Dell.png', 'dell');
+(14, 'Dell', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Dell.png', 'dell'),
+(15, 'Dell', 8, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Dell.png', 'man-hinh-dell'),
+(16, 'Xiaomi', 8, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-xiaomi.jpg', 'man-hinh-xiaomi'),
+(17, 'MSI', 8, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/MSI.png', 'man-hinh-msi'),
+(18, 'Asus', 8, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Asus.png', 'man-hinh-asus'),
+(19, 'LG', 8, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Asus.png', 'man-hinh-lg');
 
 -- --------------------------------------------------------
 
@@ -83,16 +88,21 @@ INSERT INTO `brand` (`brand_id`, `brand_name`, `category`, `image`, `slug`) VALU
 
 CREATE TABLE `cart` (
   `cart_id` int(3) NOT NULL,
-  `user_id` int(3) NOT NULL,
-  `created_at` datetime NOT NULL
+  `user_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cart_id`, `user_id`, `created_at`) VALUES
-(1, 1, '2024-01-07 10:55:51');
+INSERT INTO `cart` (`cart_id`, `user_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7);
 
 -- --------------------------------------------------------
 
@@ -112,8 +122,10 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`cart_item_id`, `cart_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 2),
-(2, 1, 3, 2);
+(76, 2, 7, 1),
+(77, 2, 6, 3),
+(81, 4, 5, 8),
+(85, 5, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -149,12 +161,123 @@ INSERT INTO `category` (`category_id`, `slug`, `name`) VALUES
 --
 
 CREATE TABLE `comment` (
-  `id` int(3) NOT NULL,
+  `comment_id` int(3) NOT NULL,
   `product_id` int(3) NOT NULL,
   `user_id` int(3) NOT NULL,
+  `comment_parent` int(3) NOT NULL DEFAULT -1,
   `content` varchar(2550) NOT NULL,
-  `datetime` datetime NOT NULL
+  `comment_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `product_id`, `user_id`, `comment_parent`, `content`, `comment_date`) VALUES
+(1, 1, 1, -1, 'Xin chao moi nguoi', '2024-01-14 10:37:06'),
+(2, 11, 1, 1, 'hay', '2024-01-14 17:17:35'),
+(3, 11, 1, 0, 'hay', '2024-01-14 17:17:49'),
+(4, 11, 1, -1, 'du ma dảk', '2024-01-14 12:22:08'),
+(5, 11, 1, 4, 'hi hi', '2024-01-14 12:22:59'),
+(6, 11, 3, 4, 'qua don dau', '2024-01-14 12:46:23'),
+(7, 11, 5, -1, 'Aoz', '2024-01-14 12:46:54'),
+(8, 11, 4, -1, 'Ác', '2024-01-14 12:49:17'),
+(10, 11, 1, 4, 'haha', '2024-01-14 20:18:41'),
+(11, 11, 1, -1, 'alo', '2024-01-14 20:18:53'),
+(12, 1, 1, -1, 'mua di', '2024-01-14 20:46:31'),
+(13, 1, 1, 1, 'gg', '2024-01-14 20:46:39'),
+(14, 2, 1, -1, 'muc di', '2024-01-14 20:46:53'),
+(15, 2, 1, 14, 'gg', '2024-01-14 20:46:59'),
+(16, 11, 3, -1, 'Sản phẩm tốt , tôi đánh giá 10/10 , nên mua và trải nghiệm', '2024-01-14 22:40:59'),
+(17, 1, 3, -1, 'tôi có 30tr điểm sức mạnh trong ride of kingdom', '2024-01-14 22:42:13'),
+(18, 2, 5, -1, 'đ!t me ao that day , tu be den gio lan dau mua cai iphone the nay ', '2024-01-14 22:43:13'),
+(19, 1, 1, 17, 'ác', '2024-01-14 22:44:29'),
+(20, 1, 7, 17, 'Chao Dung Bui', '2024-01-14 22:47:53'),
+(21, 1, 1, 17, 'ai day', '2024-01-14 22:49:12'),
+(22, 1, 3, -1, '', '2024-01-14 22:53:14'),
+(23, 1, 3, 22, 'thèm pịa quá\r\n', '2024-01-14 22:53:35'),
+(24, 1, 3, 22, 'tôi đề xuất thêm voucher giảm giá', '2024-01-14 22:54:46'),
+(26, 1, 5, 17, 'chao sonmatlon', '2024-01-14 22:57:30'),
+(27, 2, 1, 18, 'chao bui van dung, ban can giup gi', '2024-01-14 22:58:11'),
+(28, 11, 1, 16, 'nice', '2024-01-14 22:59:32'),
+(29, 1, 1, 22, 'mai web sap roi giam gia chi', '2024-01-14 23:00:36'),
+(30, 15, 1, -1, 'Xin chao', '2024-01-14 23:41:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(3) NOT NULL,
+  `user_id` int(3) NOT NULL,
+  `payment_method` int(3) NOT NULL,
+  `shipping_address` varchar(2550) NOT NULL,
+  `order_status` int(3) NOT NULL,
+  `order_date` datetime NOT NULL,
+  `total_cost` decimal(13,2) NOT NULL,
+  `finish_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `shipping_address`, `order_status`, `order_date`, `total_cost`, `finish_date`) VALUES
+(28, 1, 0, 'Xuan Chieng', 1, '2024-01-12 09:57:39', 22920000.00, NULL),
+(29, 1, 0, 'Xuan Chieng', 2, '2024-01-12 10:14:41', 3220000.00, NULL),
+(30, 1, 0, 'Xuan Chieng', 3, '2024-01-12 10:31:39', 15520000.00, NULL),
+(31, 2, 0, '', 0, '2024-01-12 10:41:04', 99000000.00, NULL),
+(32, 1, 0, 'Xuan Chieng', 4, '2024-01-12 15:16:51', 26110000.00, NULL),
+(33, 1, 0, 'Xuan Chieng', -1, '2024-01-12 15:25:07', 22920000.00, NULL),
+(34, 3, 0, '', 0, '2024-01-12 23:08:27', 33020000.00, NULL),
+(35, 4, 0, '', 0, '2024-01-12 23:10:49', 19220000.00, NULL),
+(36, 4, 0, '', 0, '2024-01-12 23:11:11', 153550000.00, NULL),
+(37, 1, 0, 'Khu 2 - Hoàng Cương - Thanh Ba - Phú Thọ', 0, '2024-01-13 22:45:11', 26520000.00, NULL),
+(38, 1, 0, 'Khu 2 - Hoàng Cương - Thanh Ba - Phú Thọ', 0, '2024-01-14 22:13:23', 22920000.00, NULL),
+(39, 4, 0, 'Hải Phòng', 4, '2024-01-14 22:42:01', 22920000.00, NULL),
+(40, 5, 0, 'ngân cầu-quyết tiến-tiên lãng- hải phòng', 4, '2024-01-14 22:42:09', 33020000.00, NULL),
+(41, 5, 0, 'ngân cầu-quyết tiến-tiên lãng- hải phòng', 4, '2024-01-14 22:44:03', 15520000.00, NULL),
+(42, 5, 0, 'ngân cầu-quyết tiến-tiên lãng- hải phòng', 4, '2024-01-14 22:55:18', 15520000.00, NULL),
+(43, 1, 0, 'Khu 2 - Hoàng Cương - Thanh Ba - Phú Thọ', 0, '2024-01-14 23:39:36', 22920000.00, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `order_item_id` int(3) NOT NULL,
+  `order_id` int(3) NOT NULL,
+  `product_id` int(3) NOT NULL,
+  `quantity` int(3) NOT NULL,
+  `price_at_purchase` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`, `price_at_purchase`) VALUES
+(27, 28, 1, 1, 22890000.00),
+(28, 29, 4, 1, 3190000.00),
+(29, 30, 3, 1, 15490000.00),
+(30, 31, 2, 3, 32990000.00),
+(31, 32, 1, 1, 22890000.00),
+(32, 32, 4, 1, 3190000.00),
+(33, 33, 1, 1, 22890000.00),
+(34, 34, 2, 1, 32990000.00),
+(35, 35, 5, 1, 19190000.00),
+(36, 36, 5, 8, 19190000.00),
+(37, 37, 6, 1, 26490000.00),
+(38, 38, 1, 1, 22890000.00),
+(39, 39, 1, 1, 22890000.00),
+(40, 40, 2, 1, 32990000.00),
+(41, 41, 3, 1, 15490000.00),
+(42, 42, 3, 1, 15490000.00),
+(43, 43, 1, 1, 22890000.00);
 
 -- --------------------------------------------------------
 
@@ -188,7 +311,35 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `image`, `s
 (7, 'Laptop Asus TUF GAMING F15 FX506HF-HN014W', 'Thiết kế laptop sang trọng thích hợp giúp bạn bỏ vào balo mang theo bên mình\r\nCPU Intel Core i5-11400H cho phép bạn thỏa thích chiến các tựa game nặng\r\nỔ cứng SSD 512GB giúp bạn lưu trữ nhiều thông tin, dữ liệu mà không cần sao chép quá USB\r\nMàn hình 15.6 inch cùng tính năng chống lóa sẽ bảo vệ mắt của bạn trong quá trình chơi game\r\nTrang bị nhiều cổng kết nối giúp quá trình nhận và chia sẻ dữ liệu trở nên dễ dàng, thuận tiện', 21990000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/l/a/laptop-asus-tuf-gaming-f15-fx506hf-hn014w.png', 16190000.00, 50, 2, 9),
 (8, 'Apple Macbook Pro 13 M2 2022 8GB 256GB I Chính hãng Apple Việt Nam', 'Chip M2 mới nhất - hiệu năng hàng đầu, thoải mái sử dụng các phần mềm đồ hoạ hay render video\r\nMàn hình Retina - màu sắc hiển thị sống động tạo ra không gian giải trí đỉnh cao\r\nThiết kế sang trọng - Trọng lượng máy chỉ 1.4kg, độ dày chỉ 15.6mm giúp bạn dễ dàng mang theo\r\nÂm thanh chân thật - Tích hợp loa kép cùng công nghệ Dolby Atmos mang đến chất lượng âm thanh tuyệt vời', 35990000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/p/r/pro-m2.jpg', 30190000.00, 50, 2, 8),
 (9, 'Laptop Asus VivoBook Go 14 E1404FA-NK177W', 'Sở hữu thiết kế sang trọng, trọng lượng nhẹ, dễ dàng mang theo bên mình\r\nRAM 16GB giúp bạn dễ dàng các tab mà không lo lag máy\r\nỞ cứng SSD 512GB giúp bạn có không gian lưu trữ lớn\r\nSở hữu cảm biến vân tay giúp thao tác mở màn hình thuận tiện hơn', 14490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_-_2023-06-08t005130.908.png', 12790000.00, 50, 2, 9),
-(10, 'Laptop MSI Gaming Bravo 15 B7ED-010VN', 'Chip AMD Ryzen 5 - 7535HS xử lý nhanh chóng các tác vụ như văn phòng, đồ hoạ, coding hay chiến game\r\nGPU AMD Radeon RX 6550M 4 GB cho đồ hoạ cao, mượt mà và ổn định ở các pha giao tranh\r\nRAM 16 GB cho phép máy vận hành mượt mà, mở cùng lúc nhiều tác vụ\r\nỔ cứng 512 GB hỗ trợ khởi động laptop, truy xuất dữ liệu nhanh hơn\r\nTần số quét 144 Hz giúp hình ảnh không bị rách hay nhoè mờ khi chơi game', 18490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/m/s/msi_1.png', 15990000.00, 50, 2, 10);
+(10, 'Laptop MSI Gaming Bravo 15 B7ED-010VN', 'Chip AMD Ryzen 5 - 7535HS xử lý nhanh chóng các tác vụ như văn phòng, đồ hoạ, coding hay chiến game\r\nGPU AMD Radeon RX 6550M 4 GB cho đồ hoạ cao, mượt mà và ổn định ở các pha giao tranh\r\nRAM 16 GB cho phép máy vận hành mượt mà, mở cùng lúc nhiều tác vụ\r\nỔ cứng 512 GB hỗ trợ khởi động laptop, truy xuất dữ liệu nhanh hơn\r\nTần số quét 144 Hz giúp hình ảnh không bị rách hay nhoè mờ khi chơi game', 18490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/m/s/msi_1.png', 15990000.00, 50, 2, 10),
+(11, 'Man hinh vi tinh dell 17inh xài ok', NULL, 300000.00, 'https://cdn.chotot.com/8AcqMiKhxDx1tGR3oubv13kU92EzvUqHMFPnqEDCWZc/preset:view/plain/b6552ebd5eb9d27fb7a806a56d0f8994-2859769504614131802.jpg', 200000.00, 50, 8, 15),
+(12, 'Màn hình cong Ultrawide Xiaomi Curved Gaming 34 inch', 'Màn hình 34 inch tỷ lệ 21:9\r\nĐộ phân giải 3440x1440\r\nTần số quét 144Hz\r\nĐộ phủ màu 121% sRGB\r\nCông nghệ AMD FreeSync\r\nThiết kế màn hình cong siêu rộng', 12990000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/2/_/2_65_1.png', 6690000.00, 50, 8, 16),
+(13, 'Màn hình MSI Pro MP223 22 inch', 'Kích thước màn hình 22 inch FHD 1920 x 1080 phục vụ tốt nhu cầu cơ bản\r\nTốc độ phản hồi 1ms, giúp bạn phản xạ nhanh trước đối thủ khi chơi game\r\nTrang bị tần số quét 100Hz, hình ảnh được tối ưu và chuyển động liền mạch\r\nĐộ phủ màu lên đến 99% sRGB cho khả năng tái hiện màu sắc chính xác', 2090000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/m/a/man-hinh-msi-pro-mp223-22-inch.png', 1790000.00, 50, 8, 17),
+(14, 'Màn hình mở rộng ASUS MB166C 16 inch', 'Màn hình IPS 15.6 inch 1920 x 1080 với thiết kế siêu mỏng\r\nĐầu nối USB-C thuận tiện kết nối với màn hình khác, laptop\r\nTrang bị công nghệ chống nhấp nháy, giảm ánh sáng xanh\r\nCông nghệ DisplayWidget giúp tự động chuyển ngang dọc', 4990000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/m/a/man-hinh-mo-rong-asus-mb166c-16-inch.png', 3890000.00, 50, 8, 18),
+(15, 'Màn hình LG UltraWide 29WQ600 29 inch', 'Màn hình UltraWide với kích thước 29 inch, trang bị độ phân giải 2560 x 1080\r\nCông nghệ HDR10 cho giúp bạn thưởng thức nội dung với màu sắc ấn tượng\r\nTấm nên IPS và sRGB 99% hiển thị chính xác màu sắc và cho góc nhìn rộng\r\nMàn hình hỗ trợ cổng ÚBB-C với chế độ thấy thế được cho cổng Display Port\r\nHỗ trợ công nghệ AMD FreeSync giảm thiểu xé hình, chuyển động liền mạch', 6490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_258_5.png', 5090000.00, 50, 8, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `rating_id` int(3) NOT NULL,
+  `order_id` int(3) NOT NULL,
+  `product_id` int(3) NOT NULL,
+  `user_id` int(3) NOT NULL,
+  `star` int(3) NOT NULL,
+  `create_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`rating_id`, `order_id`, `product_id`, `user_id`, `star`, `create_date`) VALUES
+(14, 32, 1, 1, 5, '2024-01-14 23:40:53'),
+(15, 32, 4, 1, 5, '2024-01-14 23:40:53');
 
 -- --------------------------------------------------------
 
@@ -207,12 +358,12 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id`, `link`, `image`) VALUES
-(1, 'https://cellphones.com.vn/mobile/apple/iphone-15.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/D85D6200-610C-44E0-8932-35C3FE99E741.jpeg'),
-(2, 'https://cellphones.com.vn/samsung-galaxy-a15.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/a15-a25-sliding-k-sim.png'),
+(1, 'https://cellphones.com.vn/iphone-15-pro-max.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/sliding-home-iphone15.jpg'),
+(2, 'https://cellphones.com.vn/samsung-galaxy-a15.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/sliding-a15a25-new-t1.png'),
 (3, 'https://cellphones.com.vn/laptop/mac/macbook-pro/macbook-pro-2023.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/57D9D76F-09FB-49A5-A847-E7C42B153BA2.jpeg'),
-(4, 'https://cellphones.com.vn/mobile/asus.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/5725_sliding-rogphone11.jpg'),
-(5, 'https://cellphones.com.vn/infinix-hot-30.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/infinix-sliding-th122.jpg'),
-(6, 'https://cellphones.com.vn/laptop-asus-vivobook-go-14-e1404fa-nk177w.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/vivobook%20go%2014.jpg');
+(4, 'https://cellphones.com.vn/tai-nghe-khong-day-sony-inzone-buds.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/tai-nghe-khong-day-sony-inzone-buds-01-2024.png'),
+(5, 'https://cellphones.com.vn/samsung-galaxy-s24-ultra.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/sliding-dkinhantin-1.png'),
+(6, 'https://cellphones.com.vn/xiaomi-redmi-note-13.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:80/plain/https://dashboard.cellphones.com.vn/storage/sliding-note13-dattruoc-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -225,10 +376,10 @@ CREATE TABLE `user` (
   `username` varchar(25) NOT NULL,
   `password` varchar(25) NOT NULL,
   `created_at` datetime DEFAULT NULL,
-  `image` varchar(20) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `name` varchar(25) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
-  `gender` bit(1) NOT NULL,
+  `gender` varchar(1) NOT NULL,
   `address` varchar(50) NOT NULL,
   `phone_number` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -238,7 +389,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `created_at`, `image`, `name`, `date_of_birth`, `gender`, `address`, `phone_number`) VALUES
-(1, 'hungngu', '123', '2024-01-07 10:55:38', '', NULL, NULL, b'0', '', '');
+(1, 'hungngu', '123', '2024-01-07 10:55:38', 'z5064701836265_550073b009efdc134edb8ca05b168e59.jpg', 'Hung Shadow GG', '2003-02-13', '0', 'Khu 2 - Hoàng Cương - Thanh Ba - Phú Thọ', '098765432'),
+(2, 'hungngu1', '123', '2024-01-08 19:41:16', '', NULL, NULL, '0', '', ''),
+(3, 'hongdanghpv123', 'dang2003', '2024-01-12 23:07:58', 'cu-thi-tra-khoe-nhan-sac-va-dien-xuat-ngay-cang-thang-hang-3a217ebc.jpg', 'Đăng', '0000-00-00', '0', 'hai phong', '0372893924'),
+(4, 'phamducviet', '123', '2024-01-12 23:09:54', '', 'Phạm Đức Việt ', '2002-03-04', '0', 'Hải Phòng', '0869282369'),
+(5, 'dungbui', '123456', '2024-01-12 23:13:42', 'Panda Milk Tea (2).png', 'bùi văn dũng', '2003-12-06', '0', 'ngân cầu-quyết tiến-tiên lãng- hải phòng', '0123456789'),
+(6, 'test', '123', '2024-01-14 20:44:36', '', NULL, NULL, '', '', ''),
+(7, 'Sonle', '11', '2024-01-14 22:46:56', '', 'Le Dac _Son', '2024-01-15', '0', 'J', '09827272');
 
 --
 -- Indexes for dumped tables
@@ -282,7 +439,20 @@ ALTER TABLE `category`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`order_item_id`),
+  ADD KEY `fk_order_id` (`order_id`);
 
 --
 -- Indexes for table `product`
@@ -291,6 +461,12 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `category_id` (`category_id`),
   ADD KEY `FK_Brand` (`brand_id`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`rating_id`);
 
 --
 -- Indexes for table `slider`
@@ -318,19 +494,19 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brand_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `brand_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `cart_item_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cart_item_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -342,13 +518,31 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `order_item_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `rating_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `slider`
@@ -360,7 +554,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -384,6 +578,12 @@ ALTER TABLE `cart`
 ALTER TABLE `cart_items`
   ADD CONSTRAINT `fk_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`),
   ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
 
 --
 -- Constraints for table `product`
