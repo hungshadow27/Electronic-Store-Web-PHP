@@ -2,64 +2,14 @@
 require "./src/Models/ProductModel.php";
 require "./src/Models/CategoryModel.php";
 require "./src/Models/BrandModel.php";
+require "./src/Models/OrderModel.php";
+require "./src/Models/OrderItemsModel.php";
 
-class CategoryController
+class OrderController
 {
     use Controller;
-    public function index($categorySlug, $brandSlug = null)
-    {
-        if (empty($brandSlug)) {
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryBySlug($categorySlug);
-            if (empty($category)) {
-                redirect("_404");
-                exit;
-            }
-            $productModel = new ProductModel();
-
-            $current = 1;
-            if (isset($_GET['page'])) {
-                $current  = $_GET['page'];
-            }
-            $limit = 1;
-            $offset = ($current - 1) * $limit;
-
-            $data['allProducts'] = $productModel->getProductByCategoryId($category->category_id, 999, 0);
-            $data['category'] = $category;
-            $data['limit'] = $limit;
-            $data['offset'] = $offset;
-            $data['current'] = $current;
-            $data['listProduct'] = $productModel->getProductByCategoryId($category->category_id, $limit, $offset);
-            $this->view('listproductcategory.view', $data);
-        } else {
-            $brandModel = new BrandModel();
-            $brand = $brandModel->getBrandBySlug($brandSlug);
-            if (empty($brand)) {
-                redirect("_404");
-                exit;
-            }
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryBySlug($categorySlug);
-            $productModel = new ProductModel();
-
-            $current = 1;
-            if (isset($_GET['page'])) {
-                $current  = $_GET['page'];
-            }
-            $limit = 1;
-            $offset = ($current - 1) * $limit;
-
-            $data['allProducts'] = $productModel->getProductByBrandId($brand->brand_id, 999, 0);
-            $data['brand'] = $brand;
-            $data['category'] = $category;
-            $data['limit'] = $limit;
-            $data['offset'] = $offset;
-            $data['current'] = $current;
-            $data['listProduct'] = $productModel->getProductByBrandId($brand->brand_id, $limit, $offset);
-            $this->view('listproductcategory.view', $data);
-        }
-    }
-    public function getAllCategory()
+    public function index($categorySlug, $brandSlug = null) {}
+    public function getAllOrder()
     {
         //Authentication
         if (!isset($_SESSION['USER'])) {
@@ -67,10 +17,10 @@ class CategoryController
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $categoryModel = new CategoryModel();
-            $categories = $categoryModel->getAllCategory();
+            $orderModel = new OrderModel();
+            $orders = $orderModel->getAllOrder();
             header('Content-Type: application/json');
-            echo json_encode($categories);
+            echo json_encode($orders);
         } else {
             echo json_encode(['error' => 'Student ID is not provided']);
         }
@@ -83,12 +33,13 @@ class CategoryController
             exit;
         }
         if (isset($_GET['id'])) {
-            $category_id = $_GET['id'];
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryById($category_id);
+            $order_id = $_GET['id'];
+            $orderModel = new OrderModel();
+            $order = $orderModel->getOrderById($order_id);
+
 
             header('Content-Type: application/json');
-            echo json_encode($category);
+            echo json_encode($order);
         } else {
             echo json_encode(['error' => 'Student ID is not provided']);
         }
@@ -105,11 +56,16 @@ class CategoryController
             if (!empty($json_data)) {
                 $data = json_decode($json_data, true); // true parameter converts objects to associative arrays
                 if ($data !== null) {
-                    $category_id = $data['category_id'];
-                    $slug = $data['slug'];
-                    $name = $data['name'];
-                    $categoryModel = new CategoryModel();
-                    $categoryModel->updateCategoryById($category_id, $name, $slug);
+                    $order_id = $data['order_id'];
+                    $user_id = $data['user_id'];
+                    $payment_method = $data['payment_method'];
+                    $shipping_address = $data['shipping_address'];
+                    $order_status = $data['order_status'];
+                    // $order_date = $data['order_date'];
+                    $total_cost = $data['total_cost'];
+                    $finish_date = $data['finish_date'];
+                    $orderModel = new OrderModel();
+                    $orderModel->updateOrderById($order_id, $user_id, $payment_method, $shipping_address, $order_status, $total_cost, $finish_date);
 
                     header('Content-Type: application/json');
                     echo json_encode(['success' => true, 'message' => 'Data received successfully']);
@@ -172,9 +128,11 @@ class CategoryController
             exit;
         }
         if (isset($_GET['id'])) {
-            $category_id = $_GET['id'];
-            $categoryModel = new CategoryModel();
-            $categoryModel->deleteCategoryById($category_id);
+            $order_id = $_GET['id'];
+            $orderModel = new OrderModel();
+            $orderModel->deleteOrderById($order_id);
+            $oderItemModel = new OrderItemsModel();
+            $oderItemModel->deleteOrderItemByOrderId($order_id);
 
             header('Content-Type: application/json');
             echo json_encode(['success' => 'Deleted']);

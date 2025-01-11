@@ -34,6 +34,14 @@ class LoginController
                     $cartItems = $cartItemsModel->getCartItems($cart->cart_id);
                     $_SESSION['CART'] = $cart;
                     $_SESSION['CARTITEMS'] = $cartItems;
+                    if ($user->getRole() == "admin") {
+                        redirect('admin');
+                        exit;
+                    }
+                    if ($user->getRole() == "staff") {
+                        redirect('admin');
+                        exit;
+                    }
                     redirect('home');
                     exit;
                 }

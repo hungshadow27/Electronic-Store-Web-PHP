@@ -58,11 +58,9 @@ if (isset($_SESSION['USER'])) {
 
 <body>
     <header>
-        <div class="container">
+        <div class="container" style="background-color: yellow;width: 100%;height: 30px;">
             <div class="top text-center">
-                <img src="https://cdn2.cellphones.com.vn/x30,webp,q100/https://dashboard.cellphones.com.vn/storage/top-banner-chinh-sach-bao-hanh-doi-tra.png" alt="" />
-                <img src="https://cdn2.cellphones.com.vn/x30,webp,q100/https://dashboard.cellphones.com.vn/storage/top-banner-chinh-hang-xuat-vat-day-du.png" alt="" />
-                <img src="https://cdn2.cellphones.com.vn/x30,webp,q100/https://dashboard.cellphones.com.vn/storage/top-banner-giao-nhanh-mien-phi.png" alt="" />
+                <h5 class="" style="color: red;">Chương trình Tết 2025 sắp trở lại - Đăng ký ngay!</h5>
             </div>
         </div>
 

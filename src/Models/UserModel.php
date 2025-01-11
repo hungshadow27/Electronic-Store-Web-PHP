@@ -11,7 +11,7 @@ class UserModel
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number, $rs->role);
         return $user;
     }
     public function getUserById1($id)
@@ -21,7 +21,7 @@ class UserModel
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number, $rs->role);
         return $user;
     }
     public function getUserByUsername($username)
@@ -31,7 +31,7 @@ class UserModel
         if ($rs == null) {
             return null;
         }
-        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number);
+        $user = new UserEntity($rs->id, $rs->username, $rs->password, $rs->created_at, $rs->image, $rs->name, $rs->date_of_birth, $rs->gender, $rs->address, $rs->phone_number, $rs->role);
         return $user;
     }
     public function createNewUser($username, $password, $created_at)
@@ -47,8 +47,11 @@ class UserModel
     {
         $rs = $this->table("user")
             ->update('id', $id, [
-                'name' => $name, 'phone_number' => $phoneNumber,
-                'date_of_birth' => $dateOfBirth, 'gender' => $gender, 'address' => $address
+                'name' => $name,
+                'phone_number' => $phoneNumber,
+                'date_of_birth' => $dateOfBirth,
+                'gender' => $gender,
+                'address' => $address
             ]);
         return $rs;
     }

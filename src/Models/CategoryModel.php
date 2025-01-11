@@ -24,4 +24,28 @@ class CategoryModel
             ->getOne('slug', $slug);
         return $category;
     }
+    public function updateCategoryById($id, $name, $slug)
+    {
+        $rs = $this->table('category')
+            ->update('category_id', $id, [
+                'name' => $name,
+                'slug' => $slug
+            ]);
+        return $rs;
+    }
+    public function addCategory($name, $slug)
+    {
+        $rs = $this->table('category')
+            ->insert([
+                'name' => $name,
+                'slug' => $slug
+            ]);
+        return $rs;
+    }
+    public function deleteCategoryById($id)
+    {
+        $rs = $this->table('category')
+            ->deleteOne('category_id', $id);
+        return $rs;
+    }
 }

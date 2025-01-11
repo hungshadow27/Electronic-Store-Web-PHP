@@ -46,4 +46,37 @@ class ProductModel
         }
         return $products;
     }
+    public function updateProductById($product_id, $name, $description, $price, $sale_price, $stock_quantity, $category_id, $brand_id, $image)
+    {
+        $this->table('product')
+            ->update('product_id', $product_id, [
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'sale_price' => $sale_price,
+                'stock_quantity' => $stock_quantity,
+                'category_id' => $category_id,
+                'brand_id' => $brand_id,
+                'image' => $image
+            ]);
+    }
+    public function deleteProductById($product_id)
+    {
+        $this->table('product')
+            ->deleteOne('product_id', $product_id);
+    }
+    public function addProduct($name, $description, $price, $sale_price, $stock_quantity, $category_id, $brand_id, $image)
+    {
+        $this->table('product')
+            ->insert([
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'sale_price' => $sale_price,
+                'stock_quantity' => $stock_quantity,
+                'category_id' => $category_id,
+                'brand_id' => $brand_id,
+                'image' => $image
+            ]);
+    }
 }

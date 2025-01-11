@@ -27,6 +27,12 @@ class OrderItemsModel
             ->insert(['order_id' => $orderID, 'product_id' => $product_id, 'quantity' => $quantity, 'price_at_purchase' => $priceAtPurchase]);
         return $rs;
     }
+    public function deleteOrderItemByOrderId($orderId)
+    {
+        $rs = $this->table('order_items')
+            ->deleteOne('order_id', $orderId);
+        return $rs;
+    }
     // public function deleteCartItem($product_id)
     // {
     //     $rs = $this->table('cart_items')

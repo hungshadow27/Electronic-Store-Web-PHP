@@ -6,8 +6,12 @@ class OrderModel
     {
         $rs = $this->table('orders')
             ->insert([
-                'user_id' => $user_id, 'payment_method' => $paymentMethod, 'shipping_address' => $shippingAddress,
-                'order_status' => $orderStatus, 'order_date' => $orderDate, 'total_cost' => $totalCost
+                'user_id' => $user_id,
+                'payment_method' => $paymentMethod,
+                'shipping_address' => $shippingAddress,
+                'order_status' => $orderStatus,
+                'order_date' => $orderDate,
+                'total_cost' => $totalCost
             ]);
     }
     public function getOrdersByUserId($user_id)
@@ -45,5 +49,40 @@ class OrderModel
             4 => "Đã giao hàng"
         ];
         return $string[$status];
+    }
+    public function getAllOrder()
+    {
+        $rs = $this->table('orders')
+            ->limit(999)
+            ->offset(0)
+            ->get();
+        $orders = array();
+        foreach ($rs as $r) {
+            $orders[] = $r;
+        }
+        return $orders;
+    }
+    public function getOrderById($order_id)
+    {
+        $rs = $this->table('orders')
+            ->getOne('order_id', $order_id);
+        return $rs;
+    }
+    public function updateOrderById($order_id, $user_id, $paymentMethod, $shippingAddress, $orderStatus, $totalCost, $finishDate)
+    {
+        $rs = $this->table('orders')
+            ->update('order_id', $order_id, [
+                'user_id' => $user_id,
+                'payment_method' => $paymentMethod,
+                'shipping_address' => $shippingAddress,
+                'order_status' => $orderStatus,
+                'total_cost' => $totalCost,
+                'finish_date' => $finishDate
+            ]);
+    }
+    public function deleteOrderById($order_id)
+    {
+        $rs = $this->table('orders')
+            ->deleteOne('order_id', $order_id);
     }
 }

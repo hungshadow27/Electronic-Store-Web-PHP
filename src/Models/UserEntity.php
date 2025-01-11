@@ -12,9 +12,10 @@ class UserEntity
     private $gender = '';
     private $address = '';
     private $phone_number = '';
+    private $role = '';
 
 
-    public function __construct($id = '', $username = '', $password = '', $created_at = '', $image = '', $name = '', $date_of_birth = '', $gender = '', $address = '', $phone_number = '')
+    public function __construct($id = '', $username = '', $password = '', $created_at = '', $image = '', $name = '', $date_of_birth = '', $gender = '', $address = '', $phone_number = '', $role = '')
     {
         $this->id = $id;
         $this->username = $username;
@@ -26,6 +27,7 @@ class UserEntity
         $this->gender = $gender;
         $this->address = $address;
         $this->phone_number = $phone_number;
+        $this->role = $role;
     }
     public function getId()
     {
@@ -38,6 +40,10 @@ class UserEntity
     public function getPassword()
     {
         return $this->password;
+    }
+    public function getRole()
+    {
+        return $this->role;
     }
     public function getName()
     {
@@ -114,6 +120,10 @@ class UserEntity
         $this->name = $name;
 
         return $this;
+    }
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
     /**

@@ -6,7 +6,7 @@ trait Database
     protected $table = '';
     protected $statement = '';
 
-    protected $limit = 15;
+    protected $limit = 50;
     protected $offset = 0;
 
     protected $host = '';

@@ -3,63 +3,11 @@ require "./src/Models/ProductModel.php";
 require "./src/Models/CategoryModel.php";
 require "./src/Models/BrandModel.php";
 
-class CategoryController
+class BrandController
 {
     use Controller;
-    public function index($categorySlug, $brandSlug = null)
-    {
-        if (empty($brandSlug)) {
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryBySlug($categorySlug);
-            if (empty($category)) {
-                redirect("_404");
-                exit;
-            }
-            $productModel = new ProductModel();
-
-            $current = 1;
-            if (isset($_GET['page'])) {
-                $current  = $_GET['page'];
-            }
-            $limit = 1;
-            $offset = ($current - 1) * $limit;
-
-            $data['allProducts'] = $productModel->getProductByCategoryId($category->category_id, 999, 0);
-            $data['category'] = $category;
-            $data['limit'] = $limit;
-            $data['offset'] = $offset;
-            $data['current'] = $current;
-            $data['listProduct'] = $productModel->getProductByCategoryId($category->category_id, $limit, $offset);
-            $this->view('listproductcategory.view', $data);
-        } else {
-            $brandModel = new BrandModel();
-            $brand = $brandModel->getBrandBySlug($brandSlug);
-            if (empty($brand)) {
-                redirect("_404");
-                exit;
-            }
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryBySlug($categorySlug);
-            $productModel = new ProductModel();
-
-            $current = 1;
-            if (isset($_GET['page'])) {
-                $current  = $_GET['page'];
-            }
-            $limit = 1;
-            $offset = ($current - 1) * $limit;
-
-            $data['allProducts'] = $productModel->getProductByBrandId($brand->brand_id, 999, 0);
-            $data['brand'] = $brand;
-            $data['category'] = $category;
-            $data['limit'] = $limit;
-            $data['offset'] = $offset;
-            $data['current'] = $current;
-            $data['listProduct'] = $productModel->getProductByBrandId($brand->brand_id, $limit, $offset);
-            $this->view('listproductcategory.view', $data);
-        }
-    }
-    public function getAllCategory()
+    public function index($categorySlug, $brandSlug = null) {}
+    public function getAllBrand()
     {
         //Authentication
         if (!isset($_SESSION['USER'])) {
@@ -67,10 +15,10 @@ class CategoryController
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $categoryModel = new CategoryModel();
-            $categories = $categoryModel->getAllCategory();
+            $brandModel = new BrandModel();
+            $brands = $brandModel->getAllBrand();
             header('Content-Type: application/json');
-            echo json_encode($categories);
+            echo json_encode($brands);
         } else {
             echo json_encode(['error' => 'Student ID is not provided']);
         }
@@ -83,12 +31,12 @@ class CategoryController
             exit;
         }
         if (isset($_GET['id'])) {
-            $category_id = $_GET['id'];
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryById($category_id);
+            $brand_id = $_GET['id'];
+            $brandModel = new BrandModel();
+            $brand = $brandModel->getBrandById($brand_id);
 
             header('Content-Type: application/json');
-            echo json_encode($category);
+            echo json_encode($brand);
         } else {
             echo json_encode(['error' => 'Student ID is not provided']);
         }
@@ -105,11 +53,13 @@ class CategoryController
             if (!empty($json_data)) {
                 $data = json_decode($json_data, true); // true parameter converts objects to associative arrays
                 if ($data !== null) {
-                    $category_id = $data['category_id'];
+                    $brand_id = $data['brand_id'];
                     $slug = $data['slug'];
-                    $name = $data['name'];
-                    $categoryModel = new CategoryModel();
-                    $categoryModel->updateCategoryById($category_id, $name, $slug);
+                    $name = $data['brand_name'];
+                    $category_id = $data['category_id'];
+                    $image = $data['image'];
+                    $brandModel = new BrandModel();
+                    $brandModel->updateBrand($brand_id, $slug, $name, $category_id, $image);
 
                     header('Content-Type: application/json');
                     echo json_encode(['success' => true, 'message' => 'Data received successfully']);
@@ -144,9 +94,12 @@ class CategoryController
                 // Check if JSON decoding was successful
                 if ($data !== null) {
                     $slug = $data['slug'];
-                    $name = $data['name'];
-                    $categoryModel = new CategoryModel();
-                    $categoryModel->addCategory($name, $slug);
+                    $brand_name = $data['brand_name'];
+                    $category_id = $data['category_id'];
+                    $image = $data['image'];
+                    $brandModel = new BrandModel();
+                    $brandModel->addBrand($slug, $brand_name, $category_id, $image);
+
                     header('Content-Type: application/json');
                     echo json_encode(['success' => true, 'message' => 'Data received successfully']);
                     exit; // Terminate the script after sending the response
@@ -172,9 +125,9 @@ class CategoryController
             exit;
         }
         if (isset($_GET['id'])) {
-            $category_id = $_GET['id'];
-            $categoryModel = new CategoryModel();
-            $categoryModel->deleteCategoryById($category_id);
+            $brand_id = $_GET['id'];
+            $brandModel = new BrandModel();
+            $brandModel->deleteBrand($brand_id);
 
             header('Content-Type: application/json');
             echo json_encode(['success' => 'Deleted']);
