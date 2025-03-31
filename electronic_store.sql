@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2025 at 02:13 PM
+-- Generation Time: Mar 31, 2025 at 06:32 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,9 +38,9 @@ CREATE TABLE `banner` (
 --
 
 INSERT INTO `banner` (`id`, `link`, `image`) VALUES
-(1, 'https://cellphones.com.vn/dien-thoai-samsung-galaxy-m55.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/m55-gia-9190-right-banner-11-1.png'),
+(1, 'https://cellphones.com.vn/dien-thoai-samsung-galaxy-m55.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/m55-9190-9-3-25-right-banner.png'),
 (2, 'https://cellphones.com.vn/bo-loc/imac-m4', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/right-imac-m4-30-12.jpg'),
-(3, 'https://cellphones.com.vn/uu-dai-sinh-vien-hoc-sinh', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/udsv-right-laptop.jpg');
+(3, 'https://cellphones.com.vn/uu-dai-sinh-vien-hoc-sinh', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:10/plain/https://dashboard.cellphones.com.vn/storage/s-edu-2-0-right-laptop.jpg');
 
 -- --------------------------------------------------------
 
@@ -62,18 +62,18 @@ CREATE TABLE `brand` (
 
 INSERT INTO `brand` (`brand_id`, `brand_name`, `category`, `image`, `slug`) VALUES
 (1, 'Apple', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-iphone.jpg', 'dien-thoai-apple'),
-(2, 'Samsung', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-samsung.jpg', 'samsung'),
-(3, 'Xiaomi', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-xiaomi.jpg', 'xiaomi'),
-(4, 'Oppo', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-oppo.jpg', 'oppo'),
-(5, 'Vivo', 1, 'https://img.hungmobile.vn/hungmobile-vn/2021/06/w150/logo-vivo-1.jpg', 'vivo'),
-(6, 'Realme', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-realme.jpg', 'realme'),
-(8, 'Macbook', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/macbook.png', 'macbook'),
-(9, 'Asus', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Asus.png', 'asus'),
-(10, 'MSI', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/MSI.png', 'msi'),
-(11, 'Lenovo', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Lenovo.png', 'lenovo'),
-(12, 'HP', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/HP.png', 'hp'),
-(13, 'Acer', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/acer.png', 'acer'),
-(14, 'Dell', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Dell.png', 'dell'),
+(2, 'Samsung', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-samsung.jpg', 'dien-thoai-samsung'),
+(3, 'Xiaomi', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-xiaomi.jpg', 'dien-thoai-xiaomi'),
+(4, 'Oppo', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-oppo.jpg', 'dien-thoai-oppo'),
+(5, 'Vivo', 1, 'https://img.hungmobile.vn/hungmobile-vn/2021/06/w150/logo-vivo-1.jpg', 'dien-thoai-vivo'),
+(6, 'Realme', 1, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-realme.jpg', 'dien-thoai-realme'),
+(8, 'Macbook', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/macbook.png', 'laptop-macbook'),
+(9, 'Asus', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Asus.png', 'laptop-asus'),
+(10, 'MSI', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/MSI.png', 'laptop-msi'),
+(11, 'Lenovo', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Lenovo.png', 'laptop-lenovo'),
+(12, 'HP', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/HP.png', 'laptop-hp'),
+(13, 'Acer', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/acer.png', 'laptop-acer'),
+(14, 'Dell', 2, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Dell.png', 'laptop-dell'),
 (15, 'Dell', 8, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/Dell.png', 'man-hinh-dell'),
 (16, 'Xiaomi', 8, 'https://img.hungmobile.vn/hungmobile-vn/2020/08/w150/logo-dm-xiaomi.jpg', 'man-hinh-xiaomi'),
 (17, 'MSI', 8, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Icon/brand_logo/MSI.png', 'man-hinh-msi'),
@@ -127,7 +127,8 @@ INSERT INTO `cart_items` (`cart_item_id`, `cart_id`, `product_id`, `quantity`) V
 (77, 2, 6, 3),
 (81, 4, 5, 8),
 (85, 5, 3, 1),
-(86, 8, 1, 1);
+(86, 8, 1, 1),
+(87, 8, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -301,7 +302,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `image`, `sale_price`, `stock_quantity`, `category_id`, `brand_id`) VALUES
-(1, 'Samsung Galaxy S23 Ultra 256GB', 'Thoả sức chụp ảnh, quay video chuyên nghiệp - Camera đến 200MP, chế độ chụp đêm cải tiến, bộ xử lí ảnh thông minh\nChiến game bùng nổ - chip Snapdragon 8 Gen 2 8 nhân tăng tốc độ xử lí, màn hình 120Hz, pin 5.000mAh\nNâng cao hiệu suất làm việc với Siêu bút S Pen tích hợp, dễ dàng đánh dấu sự kiện từ hình ảnh hoặc video\nThiết kế bền bỉ, thân thiện - Màu sắc lấy cảm hứng từ thiên nhiên, chất liệu kính và lớp phim phủ PET tái chế', 31490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-ultra.png', 22890000.00, 50, 1, 3),
+(1, 'Samsung Galaxy S23 Ultra 256GB', 'Thoả sức chụp ảnh, quay video chuyên nghiệp - Camera đến 200MP, chế độ chụp đêm cải tiến, bộ xử lí ảnh thông minh\nChiến game bùng nổ - chip Snapdragon 8 Gen 2 8 nhân tăng tốc độ xử lí, màn hình 120Hz, pin 5.000mAh\nNâng cao hiệu suất làm việc với Siêu bút S Pen tích hợp, dễ dàng đánh dấu sự kiện từ hình ảnh hoặc video\nThiết kế bền bỉ, thân thiện - Màu sắc lấy cảm hứng từ thiên nhiên, chất liệu kính và lớp phim phủ PET tái chế', 31490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-ultra.png', 22890000.00, 50, 1, 2),
 (2, 'iPhone 15 Pro Max 256GB | Chính hãng VN/A', 'Thiết kế khung viền từ titan chuẩn hàng không vũ trụ - Cực nhẹ, bền cùng viền cạnh mỏng cầm nắm thoải mái\r\nHiệu năng Pro chiến game thả ga - Chip A17 Pro mang lại hiệu năng đồ họa vô cùng sống động và chân thực\r\nThoả sức sáng tạo và quay phim chuyên nghiệp - Cụm 3 camera sau đến 48MP và nhiều chế độ tiên tiến\r\nNút tác vụ mới giúp nhanh chóng kích hoạt tính năng yêu thích của bạn', 34990000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_3.png', 32990000.00, 100, 1, 1),
 (3, 'Xiaomi 13T Pro 5G (12GB - 512GB)', 'Nhiếp ảnh chuyên ngiệp, nắm giữ tuyệt tác trong tầm tay - Cụm camera đến, ống kính Leica với 2 phong cách ảnh\r\nHiệu năng bất chấp mọi tác vụ - Bộ vi xử lý Dimensity 9200+ Ultra mạnh mẽ cùng RAM 12GB cho đa nhiệm mượt mà\r\nNăng lượng bất tận cả ngày - Pin 5000mAh cùng sạc nhanh 120W, sạc đầy chỉ trong 19 phút\r\nMàn hình sáng rực rỡ, cuộn lướt thật mượt mà - Màn hình 144hz cùng công nghệ AMOLED CrystalRes', 16990000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/x/i/xiaomi-13-pro-thumb-xanh-la9.jpg', 15490000.00, 30, 1, 3),
 (4, 'Xiaomi Redmi 13C 6GB 128GB', 'Chipset Helio G85 cho hiệu năng ổn định - Hoạt động mượt mà cho các tác vụ cơ bản hàng ngày.\r\nHệ thống camera kép mạnh mẽ - Cải thiện độ chi tiết và độ sắc nét cho từng bức ảnh.\r\nDung lượng pin khổng lồ lên đến 5000 mAh - Giúp bạn thoải mái trải nghiệm nhiều giờ sử dụng liên tục.\r\nMàn hình lớn kích thước 6.71 inch - Mang lại trải nghiệm xem ấn tượng.', 3490000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/x/i/xiaomi-redmi-13c_21__1.png', 3190000.00, 200, 1, 3),
@@ -357,11 +358,11 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id`, `link`, `image`) VALUES
-(1, 'https://cellphones.com.vn/iphone-16-pro-max.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/len-doi-iphone-16-pro-max-tang-airpod-4-sliding.jpg'),
-(2, 'https://cellphones.com.vn/dien-thoai-oppo-reno13f-4g.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/home-Tet-oppo-reno13f.jpg'),
-(3, 'https://cellphones.com.vn/dien-thoai-xiaomi-redmi-note-14.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/note-14-series-home.jpg'),
-(4, 'https://cellphones.com.vn/dien-thoai-nothing-phone-2a.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/Cate-Nothing%20phone-2A-Series-home.png'),
-(5, 'https://cellphones.com.vn/samsung-galaxy-s24-ultra.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/s24-ultra-kvtet-moi-home.png');
+(1, 'https://cellphones.com.vn/iphone-16-pro-max.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/iphone-16-pro-max-tang-airpods-4-home-19-3.jpg'),
+(2, 'https://cellphones.com.vn/dien-thoai-oppo-find-n5.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/oppo-find-n5-home.jpg'),
+(3, 'https://cellphones.com.vn/dien-thoai-xiaomi-redmi-note-14-5g.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/dien-thoai-xiaomi-redmi-note-14-5-home.jpg'),
+(4, 'https://cellphones.com.vn/dien-thoai-samsung-galaxy-s25-ultra.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/dien-thoai-samsung-galaxy-s25-ultra-xanh-28-3-home.png'),
+(5, 'https://cellphones.com.vn/dien-thoai-samsung-galaxy-a06-5g.html', 'https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/dien-thoai-samsung-galaxy-a06-5g-home.png');
 
 -- --------------------------------------------------------
 
@@ -411,19 +412,23 @@ ALTER TABLE `banner`
 -- Indexes for table `brand`
 --
 ALTER TABLE `brand`
-  ADD PRIMARY KEY (`brand_id`);
+  ADD PRIMARY KEY (`brand_id`),
+  ADD KEY `FK_category` (`category`);
 
 --
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`);
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `fk_user_id` (`user_id`);
 
 --
 -- Indexes for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  ADD PRIMARY KEY (`cart_item_id`);
+  ADD PRIMARY KEY (`cart_item_id`),
+  ADD KEY `fk_cart_id` (`cart_id`),
+  ADD KEY `fk_product_id` (`product_id`);
 
 --
 -- Indexes for table `category`
@@ -447,13 +452,16 @@ ALTER TABLE `orders`
 -- Indexes for table `order_items`
 --
 ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`order_item_id`);
+  ADD PRIMARY KEY (`order_item_id`),
+  ADD KEY `fk_order_id` (`order_id`);
 
 --
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `FK_Brand` (`brand_id`),
+  ADD KEY `product_ibfk_1` (`category_id`);
 
 --
 -- Indexes for table `rating`
@@ -499,7 +507,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `cart_item_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `cart_item_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `category`
