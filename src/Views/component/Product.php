@@ -13,10 +13,10 @@ if ($totalRating > 0) {
 <div class="my-2 col-lg-3 col-sm-12">
     <div class="mx-auto card position-relative shadow" style="width: 99%;">
         <a href="<?= ROOT ?>/productdetail/<?= $product->product_id ?>">
-            <img src="<?= $product->image ?>" class="card-img-top w-50 d-block mx-auto mt-3" alt="..." />
+            <img src="<?= $product->image ?>" class="card-img-top d-block mx-auto mt-3 cover" alt="..." style="width: 150px;height:150px;object-fit: cover;" />
         </a>
         <div class="card-body">
-            <a href="<?= ROOT ?>/productdetail/<?= $product->product_id ?>" class="card-title fs-5 fw-semibold text-decoration-none"><?= $product->name ?></a>
+            <a href="<?= ROOT ?>/productdetail/<?= $product->product_id ?>" class="card-title fs-5 fw-semibold text-decoration-none" style="display:block;height: 84px"><?= $product->name ?></a>
             <div class="price my-3">
                 <span class="fs-5 text-danger fw-bold"><?= number_format($product->sale_price) ?>₫</span>
                 <del class="fs-5 text-secondary fw-bold"><?= number_format($product->price) ?>₫</del>
@@ -25,11 +25,11 @@ if ($totalRating > 0) {
                 Giảm ngay 500k khi thanh toán qua VNPay.
             </p>
             <div class="buy-btn text-center">
-                <a href="<?= ROOT ?>/productdetail/<?= $product->product_id ?>" class="btn btn-danger my-4">Mua ngay</a>
+                <a href="<?= ROOT ?>/productdetail/<?= $product->product_id ?>" class="btn btn-danger my-2">Mua ngay</a>
                 <?php if (isset($_SESSION['CARTITEMS'])) : ?>
-                    <span class="btn btn-secondary my-4 pe-auto" onclick="addCart(event, <?= $product->product_id ?>)">Thêm vào giỏ hàng</span>
+                    <span class="btn btn-secondary my-2 pe-auto" onclick="addCart(event, <?= $product->product_id ?>)">Thêm vào giỏ hàng</span>
                 <?php else : ?>
-                    <a href="<?= ROOT ?>/login" class="btn btn-secondary my-4 pe-auto">Thêm vào giỏ hàng</a>
+                    <a href="<?= ROOT ?>/login" class="btn btn-secondary my-2 pe-auto">Thêm vào giỏ hàng</a>
                 <?php endif; ?>
             </div>
             <div class="bottom d-flex align-items-center justify-content-between">

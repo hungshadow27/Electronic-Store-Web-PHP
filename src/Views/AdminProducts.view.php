@@ -7,10 +7,8 @@
             <tr>
                 <th scope="col" class="px-6 py-4">ID/Sản phẩm</th>
                 <th scope="col" class="px-6 py-4">Tên sản phẩm</th>
-                <th scope="col" class="px-6 py-4">Mô tả</th>
                 <th scope="col" class="px-6 py-4">Giá</th>
                 <th scope="col" class="px-6 py-4">Giá khuyến mãi</th>
-                <th scope="col" class="px-6 py-4">Số lượng</th>
                 <th scope="col" class="px-6 py-4">Hình ảnh</th>
                 <th scope="col" class="px-6 py-4">Danh mục</th>
                 <th scope="col" class="px-6 py-4">Thương hiệu</th>
@@ -24,14 +22,12 @@
                         <?= $product->product_id ?>
                     </td>
                     <td class="whitespace-nowrap px-6 py-4"><?= $product->name ?></td>
-                    <td class="whitespace px-6 py-4"><?= truncateString($product->description) ?></td>
                     <td class="whitespace-nowrap px-6 py-4">
                         <?= number_format($product->price, 0, '', '.') ?> VND
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
                         <?= number_format($product->sale_price, 0, '', '.') ?> VND
                     </td>
-                    <td class="whitespace-nowrap px-6 py-4"><?= $product->stock_quantity ?></td>
                     <td class="whitespace-nowrap px-6 py-4">
                         <img src="<?= $product->image ?>" alt="Image of <?= $product->name ?>" class="h-16 w-16 object-cover">
                     </td>

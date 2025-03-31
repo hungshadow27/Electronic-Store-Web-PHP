@@ -8,60 +8,125 @@ class CategoryController
     use Controller;
     public function index($categorySlug, $brandSlug = null)
     {
+        $productModel = new ProductModel();
+        $categoryModel = new CategoryModel();
+        $brandModel = new BrandModel();
+
+        $category = $categoryModel->getCategoryBySlug($categorySlug);
+        if (empty($category)) {
+            redirect("_404");
+            exit;
+        }
+
+        $current = isset($_GET['page']) ? $_GET['page'] : 1;
+        $limit = 6;
+        $offset = ($current - 1) * $limit;
+
+        // Get filter parameters
+        $priceRange = isset($_GET['price']) ? $_GET['price'] : '';
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+
+        // Get all products initially
         if (empty($brandSlug)) {
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryBySlug($categorySlug);
-            if (empty($category)) {
-                redirect("_404");
-                exit;
-            }
-            $productModel = new ProductModel();
-
-            $current = 1;
-            if (isset($_GET['page'])) {
-                $current  = $_GET['page'];
-            }
-            $limit = 1;
-            $offset = ($current - 1) * $limit;
-
-            $data['allProducts'] = $productModel->getProductByCategoryId($category->category_id, 999, 0);
+            $allProducts = $productModel->getProductByCategoryId($category->category_id, 999, 0);
             $data['category'] = $category;
-            $data['limit'] = $limit;
-            $data['offset'] = $offset;
-            $data['current'] = $current;
-            $data['listProduct'] = $productModel->getProductByCategoryId($category->category_id, $limit, $offset);
-            $this->view('listproductcategory.view', $data);
         } else {
-            $brandModel = new BrandModel();
             $brand = $brandModel->getBrandBySlug($brandSlug);
             if (empty($brand)) {
                 redirect("_404");
                 exit;
             }
-            $categoryModel = new CategoryModel();
-            $category = $categoryModel->getCategoryBySlug($categorySlug);
-            $productModel = new ProductModel();
-
-            $current = 1;
-            if (isset($_GET['page'])) {
-                $current  = $_GET['page'];
-            }
-            $limit = 1;
-            $offset = ($current - 1) * $limit;
-
-            $data['allProducts'] = $productModel->getProductByBrandId($brand->brand_id, 999, 0);
+            $allProducts = $productModel->getProductByBrandId($brand->brand_id, 999, 0);
             $data['brand'] = $brand;
             $data['category'] = $category;
-            $data['limit'] = $limit;
-            $data['offset'] = $offset;
-            $data['current'] = $current;
-            $data['listProduct'] = $productModel->getProductByBrandId($brand->brand_id, $limit, $offset);
-            $this->view('listproductcategory.view', $data);
         }
+
+        // Apply filters using PHP
+        $filteredProducts = $this->filterProducts($allProducts, $priceRange);
+
+        // Apply sorting
+        $filteredProducts = $this->sortProducts($filteredProducts, $sort);
+
+        // Apply pagination
+        $data['allProducts'] = $filteredProducts;
+        $data['listProduct'] = array_slice($filteredProducts, $offset, $limit);
+
+        $data['limit'] = $limit;
+        $data['offset'] = $offset;
+        $data['current'] = $current;
+        $this->view('listproductcategory.view', $data);
     }
+
+    private function filterProducts($products, $priceRange)
+    {
+        if (empty($priceRange)) {
+            return $products;
+        }
+
+        return array_filter($products, function ($product) use ($priceRange) {
+            $price = $product->price;
+            switch ($priceRange) {
+                case 'under-3m':
+                    return $price < 3000000;
+                case '3m-5m':
+                    return $price >= 3000000 && $price <= 5000000;
+                case '5m-7m':
+                    return $price >= 5000000 && $price <= 7000000;
+                case '7m-9m':
+                    return $price >= 7000000 && $price <= 9000000;
+                case 'over-12m':
+                    return $price > 12000000;
+                default:
+                    return true;
+            }
+        });
+    }
+
+    private function sortProducts($products, $sort)
+    {
+        if (empty($sort)) {
+            return $products;
+        }
+
+        usort($products, function ($a, $b) use ($sort) {
+            if ($sort === 'price-asc') {
+                return $a->price - $b->price;
+            } elseif ($sort === 'price-desc') {
+                return $b->price - $a->price;
+            }
+            return 0;
+        });
+
+        return $products;
+    }
+
+    public function search()
+    {
+        $productModel = new ProductModel();
+
+        $searchTerm = isset($_GET['q']) ? trim($_GET['q']) : '';
+        $current = isset($_GET['page']) ? $_GET['page'] : 1;
+        $limit = 6;
+        $offset = ($current - 1) * $limit;
+
+        if (empty($searchTerm)) {
+            $data['allProducts'] = [];
+            $data['listProduct'] = [];
+        } else {
+            $data['allProducts'] = $productModel->searchProducts($searchTerm, 999, 0);
+            $data['listProduct'] = $productModel->searchProducts($searchTerm, $limit, $offset);
+        }
+
+        $data['searchTerm'] = $searchTerm;
+        $data['limit'] = $limit;
+        $data['offset'] = $offset;
+        $data['current'] = $current;
+
+        $this->view('searchresults.view', $data);
+    }
+
     public function getAllCategory()
     {
-        //Authentication
         if (!isset($_SESSION['USER'])) {
             echo json_encode(['error' => '403: You cannot access this data']);
             exit;

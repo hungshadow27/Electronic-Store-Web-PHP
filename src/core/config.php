@@ -6,7 +6,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBUSER', 'root');
     define('DBPASS', '');
     define('DBDRIVER', '');
-    define('ROOT', 'http://localhost/electronic-store');
+    define('ROOT', 'http://localhost/electronicstore');
 } else {
     define('DBNAME', 'electronic_store');
     define('DBHOST', '127.0.0.1:3306');

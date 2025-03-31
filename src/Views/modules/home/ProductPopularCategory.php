@@ -19,12 +19,12 @@ $listBrand = $brandModel->getAllBrand();
                 <div class="list-category-tags col-lg-9 col-sm-12 text-end">
                     <?php foreach ($listBrand as $brand) : ?>
                         <?php if ($brand->category == $cat->category_id) : ?>
-                            <a href="<?= ROOT ?>/category/<?= $cat->slug ?>/<?= strtolower($brand->brand_name) ?>" class="btn btn-secondary mb-1"><?= $brand->brand_name ?></a>
+                            <a href="<?= ROOT ?>/category/<?= $cat->slug ?>/<?= strtolower($brand->slug) ?>" class="btn btn-secondary mb-1"><?= $brand->brand_name ?></a>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="list-product mt-3 row justify-content-between align-items-strength flex-wrap">
+            <div class="list-product mt-3 row justify-content-start align-items-strength flex-wrap">
                 <?php $item = 0;
                 foreach ($listProduct as $product) : ?>
                     <?php if ($product->category_id == $cat->category_id) :

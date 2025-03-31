@@ -34,7 +34,23 @@ class ProductModel
         }
         return $products;
     }
+    public function searchProducts($searchTerm, $limit = 15, $offset = 0)
+    {
+        $searchTerm = "%" . $searchTerm . "%";
+        $sql = "SELECT * FROM product WHERE name LIKE ? LIMIT ? OFFSET ?";
+        $this->statement = $this->conn->prepare($sql);
+        $this->statement->bind_param('sii', $searchTerm, $limit, $offset);
+        $this->statement->execute();
 
+        $result = $this->statement->get_result();
+        $products = [];
+        while ($row = $result->fetch_object()) {
+            $products[] = $row;
+        }
+        $this->resetQuery();
+
+        return $products;
+    }
     //FIX HERE
     public function getAllProduct()
     {

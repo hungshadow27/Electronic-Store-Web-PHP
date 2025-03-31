@@ -77,7 +77,7 @@ if (isset($_SESSION['USER'])) {
 
 <body>
     <div id="alertContainer"></div>
-    <div id="loadingContainer" class="z-50 space-y-2 hidden p-3 bg-slate-700 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div id="loadingContainer" class="z-50 space-y-2 hidden p-3 bg-slate-700 text-white fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-success motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
             <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
         </div>
